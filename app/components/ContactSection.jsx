@@ -109,16 +109,16 @@ export default function ContactSection() {
 
             <select
               name="packageName"
-              className="input-ui"
+              className="input-ui bg-[#020617] text-white"
               value={form.packageName}
               onChange={handleChange}
               required
             >
-              <option value="">Select package</option>
-              <option value="Basic">Basic</option>
-              <option value="Premium">Premium</option>
-              <option value="Platinum">Platinum</option>
-              <option value="Custom Software">Custom Software</option>
+              <option value="" className="bg-[#020617] text-white">Select package</option>
+              <option value="Basic" className="bg-[#020617] text-white">Basic</option>
+              <option value="Premium" className="bg-[#020617] text-white">Premium</option>
+              <option value="Platinum" className="bg-[#020617] text-white">Platinum</option>
+              <option value="Custom Software" className="bg-[#020617] text-white">Custom Software</option>
             </select>
           </div>
 
