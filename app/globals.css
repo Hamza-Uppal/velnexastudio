@@ -1,26 +1,129 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-main: #020617;
+  --bg-soft: #050c1a;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.08);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+
+  /* 🔥 BRAND COLORS (Aligned to logo) */
+  --brand-primary: #3b82f6;   /* main blue */
+  --brand-glow: #38bdf8;      /* lighter glow */
+  --brand-deep: #1e3a8a;      /* darker depth */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background:
+    radial-gradient(circle at top left, rgba(59,130,246,0.15), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(56,189,248,0.12), transparent 25%),
+    linear-gradient(to bottom, #020617, #030712);
+
+  color: var(--text-main);
+  min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= UI ================= */
+
+.container-main {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+}
+
+.glass-strong {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+}
+
+/* 🔥 Buttons upgraded */
+
+.blue-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--brand-glow),
+    var(--brand-primary)
+  );
+  color: #020617;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: 0 0 25px rgba(56,189,248,0.25);
+}
+
+.blue-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(56,189,248,0.4);
+}
+
+.outline-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 600;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.outline-button:hover {
+  border-color: var(--brand-glow);
+  color: var(--brand-glow);
+}
+
+/* Inputs */
+
+.input-ui {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  padding: 12px 16px;
+  color: white;
+  outline: none;
+}
+
+.input-ui:focus {
+  border-color: var(--brand-glow);
+}
+
+/* Typography */
+
+.section-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  margin-top: 16px;
+  max-width: 640px;
+  color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 3rem;
+  }
 }
