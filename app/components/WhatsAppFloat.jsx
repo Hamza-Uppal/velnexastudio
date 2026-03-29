@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function WhatsAppFloat() {
   const [hover, setHover] = useState(false);
 
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "971000000000";
+  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9715674440932";
   const message =
     "Hi Velnexa Studio, I want to discuss a website or business system.";
 
