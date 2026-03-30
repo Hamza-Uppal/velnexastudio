@@ -17,12 +17,12 @@ export default function Navbar() {
     { label: "Contact", href: "#contact" },
   ];
 
-  function handleClose() {
+  function closeMenu() {
     setOpen(false);
   }
 
   useEffect(() => {
-    function handleOutsideClick(event) {
+    function handleClickOutside(event) {
       if (!open) return;
 
       const target = event.target;
@@ -43,11 +43,11 @@ export default function Navbar() {
       }
     }
 
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleEscape);
 
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscape);
     };
   }, [open]);
@@ -69,13 +69,14 @@ export default function Navbar() {
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur-xl">
         <div className="container-main flex items-center justify-between py-4">
           <a href="#home" className="flex items-center gap-4">
-            <div className="flex items-center justify-center rounded-xl border border-white/10 bg-white/5 p-2 shadow-[0_0_18px_rgba(59,130,246,0.12)]">
+            <div className="flex items-center justify-center rounded-xl border border-white/10 bg-white/5 p-2 shadow-[0_0_20px_rgba(59,130,246,0.15)]">
               <Image
                 src="/velnexa-logo.png"
                 alt="Velnexa Studio"
                 width={50}
                 height={50}
                 className="object-contain"
+                priority
               />
             </div>
 
@@ -122,10 +123,8 @@ export default function Navbar() {
       </header>
 
       <div
-        className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-[2px] transition-all duration-300 lg:hidden ${
-          open
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
+        className={`fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-all duration-300 lg:hidden ${
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
 
@@ -143,7 +142,7 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={handleClose}
+                onClick={closeMenu}
                 className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition hover:border-blue-400 hover:text-blue-400"
                 style={{
                   transitionDelay: open ? `${index * 40}ms` : "0ms",
@@ -155,7 +154,7 @@ export default function Navbar() {
 
             <a
               href="#contact"
-              onClick={handleClose}
+              onClick={closeMenu}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-400 to-blue-600 px-5 py-3 text-sm font-semibold text-black transition hover:scale-[1.02]"
             >
               Start Project
