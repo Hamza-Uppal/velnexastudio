@@ -29,6 +29,7 @@ export default function ContactSection() {
 
     setLoading(true);
     setStatusMessage("");
+    setShowWhatsApp(false);
 
     try {
       const response = await fetch("/api/contact", {
@@ -44,8 +45,6 @@ export default function ContactSection() {
       if (data.success) {
         setStatusMessage("Your message has been sent successfully.");
         setForm(initialForm);
-
-        // ✅ Show WhatsApp option instead of auto-opening
         setShowWhatsApp(true);
       } else {
         setStatusMessage(data.message || "Something went wrong.");
@@ -67,11 +66,11 @@ export default function ContactSection() {
           </div>
 
           <h2 className="mt-4 text-4xl font-black text-white md:text-5xl">
-            Ready to upgrade your business?
+            Ready to build something stronger?
           </h2>
 
           <p className="mt-5 text-lg text-slate-300">
-            Tell us about your requirement. We’ll guide you with the right solution.
+            Tell us what you need — website, redesign, dashboard, system, or industry-specific solution.
           </p>
         </div>
 
@@ -109,16 +108,32 @@ export default function ContactSection() {
 
             <select
               name="packageName"
-              className="input-ui bg-[#020617] text-white"
               value={form.packageName}
               onChange={handleChange}
               required
+              className="input-ui bg-[#020617] text-white"
             >
-              <option value="" className="bg-[#020617] text-white">Select package</option>
-              <option value="Basic" className="bg-[#020617] text-white">Basic</option>
-              <option value="Premium" className="bg-[#020617] text-white">Premium</option>
-              <option value="Platinum" className="bg-[#020617] text-white">Platinum</option>
-              <option value="Custom Software" className="bg-[#020617] text-white">Custom Software</option>
+              <option value="" className="bg-[#020617] text-white">
+                Select requirement
+              </option>
+              <option value="Starter Website" className="bg-[#020617] text-white">
+                Starter Website
+              </option>
+              <option value="Growth Website" className="bg-[#020617] text-white">
+                Growth Website
+              </option>
+              <option value="Advanced Website" className="bg-[#020617] text-white">
+                Advanced Website
+              </option>
+              <option value="Website Redesign" className="bg-[#020617] text-white">
+                Website Redesign
+              </option>
+              <option value="Dashboard / Office System" className="bg-[#020617] text-white">
+                Dashboard / Office System
+              </option>
+              <option value="Custom Business Software" className="bg-[#020617] text-white">
+                Custom Business Software
+              </option>
             </select>
           </div>
 
@@ -140,12 +155,12 @@ export default function ContactSection() {
             <p className="text-sm text-sky-300">{statusMessage}</p>
           )}
 
-          {/* ✅ WhatsApp appears ONLY after success */}
           {showWhatsApp && (
             <a
               href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
               target="_blank"
-              className="mt-2 inline-block rounded-full bg-green-500 px-5 py-2 text-white font-semibold hover:bg-green-600"
+              rel="noopener noreferrer"
+              className="mt-2 inline-block rounded-full bg-green-500 px-5 py-2 font-semibold text-white hover:bg-green-600"
             >
               Continue on WhatsApp
             </a>

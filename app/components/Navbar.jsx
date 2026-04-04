@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -10,11 +11,12 @@ export default function Navbar() {
   const buttonRef = useRef(null);
 
   const links = [
-    { label: "Services", href: "#services" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "Demos", href: "#demos" },
-    { label: "Software", href: "#software" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Demos", href: "/demos" },
+    { label: "Contact", href: "/contact" },
   ];
 
   function closeMenu() {
@@ -24,7 +26,6 @@ export default function Navbar() {
   useEffect(() => {
     function handleClickOutside(event) {
       if (!open) return;
-
       const target = event.target;
 
       if (
@@ -53,12 +54,7 @@ export default function Navbar() {
   }, [open]);
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
+    document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -68,7 +64,7 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur-xl">
         <div className="container-main flex items-center justify-between py-4">
-          <a href="#home" className="flex items-center gap-4">
+          <Link href="/" className="flex items-center gap-4">
             <div className="flex items-center justify-center rounded-xl border border-white/10 bg-white/5 p-2 shadow-[0_0_20px_rgba(59,130,246,0.15)]">
               <Image
                 src="/velnexa-logo.png"
@@ -88,26 +84,26 @@ export default function Navbar() {
                 Digital Systems & Websites
               </div>
             </div>
-          </a>
+          </Link>
 
           <nav className="hidden items-center gap-8 text-sm text-slate-300 lg:flex">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="transition hover:text-blue-400"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="hidden items-center rounded-full bg-gradient-to-r from-blue-400 to-blue-600 px-5 py-2.5 text-sm font-semibold text-black transition hover:scale-105 lg:inline-flex"
           >
             Start Project
-          </a>
+          </Link>
 
           <button
             ref={buttonRef}
@@ -139,7 +135,7 @@ export default function Navbar() {
         <div className="container-main rounded-3xl border border-white/10 bg-[#020617]/95 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
           <div className="flex flex-col gap-3">
             {links.map((link, index) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={closeMenu}
@@ -149,16 +145,16 @@ export default function Navbar() {
                 }}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
 
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
               onClick={closeMenu}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-400 to-blue-600 px-5 py-3 text-sm font-semibold text-black transition hover:scale-[1.02]"
             >
               Start Project
-            </a>
+            </Link>
           </div>
         </div>
       </div>
