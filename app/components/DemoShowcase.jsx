@@ -13,7 +13,7 @@ export default function DemoShowcase() {
       category: "Gym Website",
       description:
         "Designed to convert visitors into enquiries with structured content and clear flow.",
-      href: "https://velnexastudio.netlify.app/premium",
+      href: "https://velnexa-studio.netlify.app/premium",
       /*image: "/demo-previews/premium.jpg",*/
       featured: true,
     },
@@ -22,7 +22,7 @@ export default function DemoShowcase() {
       category: "Gym Business System",
       description:
         "Built for high-end businesses that need trust, systems, and premium presentation.",
-      href: "https://velnexastudio.netlify.app/platinum",
+      href: "https://velnexa-studio.netlify.app/platinum",
       /*image: "/demo-previews/platinum.jpg",*/
     },
     {
