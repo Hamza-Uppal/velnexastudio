@@ -1,29 +1,37 @@
+import Image from "next/image";
+
 export default function DemoShowcase() {
   const demos = [
     {
       name: "Starter",
-      category: "Gym Website",
+      category: "Gym Starter Website",
       description:
-        "Strong, clean website for businesses that need a professional online presence.",
-      href: "https://velnexa-studio.netlify.app/basic",
-      /*image: "/demo-previews/basic.jpg",*/
+        "A clean fitness website for gyms that need programs, pricing, trust sections, and lead capture.",
+      href: "/demos/gym-basic",
+      price: "From AED 1,200",
+      image:
+        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85",
     },
     {
       name: "Growth",
-      category: "Gym Website",
+      category: "Gym Premium Website",
       description:
-        "Designed to convert visitors into enquiries with structured content and clear flow.",
-      href: "https://velnexa-studio.netlify.app/premium",
-      /*image: "/demo-previews/premium.jpg",*/
+        "A polished gym demo with stronger branding, membership offers, trainers, and inquiry flow.",
+      href: "/demos/gym-premium",
+      price: "From AED 3,000",
+      image:
+        "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1000&q=85",
       featured: true,
     },
     {
       name: "Advanced",
       category: "Gym Business System",
       description:
-        "Built for high-end businesses that need trust, systems, and premium presentation.",
-      href: "https://velnexa-studio.netlify.app/platinum",
-      /*image: "/demo-previews/platinum.jpg",*/
+        "A high-end fitness business demo for premium gyms, system planning, and custom workflows.",
+      href: "/demos/gym-platinum",
+      price: "From AED 7,000",
+      image:
+        "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=85",
     },
     {
       name: "Real Estate",
@@ -31,7 +39,9 @@ export default function DemoShowcase() {
       description:
         "A premium real estate website focused on listings, trust, and serious lead capture.",
       href: "/demos/real-estate",
-      /*image: "/demo-previews/real-estate.jpg",*/
+      price: "From AED 3,500",
+      image:
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85",
     },
     {
       name: "Personal Trainer",
@@ -39,7 +49,29 @@ export default function DemoShowcase() {
       description:
         "A professional trainer website with programs, lead capture, and booking-focused structure.",
       href: "/demos/personal-trainer",
-      /*image: "/demo-previews/personal-trainer.jpg",*/
+      price: "From AED 2,500",
+      image:
+        "https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=1000&q=85",
+    },
+    {
+      name: "Bakery",
+      category: "Bakery",
+      description:
+        "A luxury bakery website demo designed for cake shops, pastry brands, cafes, and dessert businesses.",
+      href: "/demos/bakery",
+      price: "From AED 2,500",
+      image:
+        "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=900&q=85",
+    },
+    {
+      name: "Bakery Online Store",
+      category: "Bakery E-commerce",
+      description:
+        "A full bakery online store demo for cakes, pastries, sweets, gift boxes, and delivery-based orders.",
+      href: "/demos/bakery-store",
+      price: "From AED 5,000",
+      image:
+        "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=85",
     },
     {
       name: "Coming Soon",
@@ -47,7 +79,8 @@ export default function DemoShowcase() {
       description:
         "More industry-specific demos will be added here as the portfolio expands.",
       href: "#",
-      /*image: "/demo-previews/coming-soon.jpg",*/
+      image:
+        "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1000&q=85",
     },
   ];
 
@@ -63,10 +96,7 @@ export default function DemoShowcase() {
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {demos.map((demo) => {
-            const openInNewTab =
-              demo.href.startsWith("http") ||
-              demo.href.includes("real-estate") ||
-              demo.href.includes("personal-trainer");
+            const openInNewTab = demo.href.startsWith("http") || demo.href.startsWith("/demos/");
 
             return (
               <a
@@ -81,18 +111,24 @@ export default function DemoShowcase() {
                 }`}
               >
                 <div className="relative h-72 overflow-hidden">
-                  {/*<img
-                    src={demo.image}
-                    alt={demo.name}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />*/}
+                  {demo.image ? (
+                    <Image
+                      src={demo.image}
+                      alt={`${demo.name} demo preview`}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.25),transparent_30%),linear-gradient(135deg,#020617,#0f172a)]" />
+                  )}
 
                   <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-[#020617]/80" />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.22),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(56,189,248,0.14),transparent_28%)]" />
 
                   {demo.featured && (
-                    <div className="absolute right-5 top-5 rounded-full bg-blue-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white">
-                      Featured
+                    <div className="absolute right-5 top-5 rounded-full bg-blue-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_8px_24px_rgba(59,130,246,0.35)]">
+                      Popular
                     </div>
                   )}
 
@@ -105,6 +141,11 @@ export default function DemoShowcase() {
                       <h3 className="text-2xl font-bold text-white transition group-hover:text-sky-300">
                         {demo.name}
                       </h3>
+                      {demo.price && (
+                        <div className="mt-3 inline-flex rounded-full border border-sky-300/25 bg-sky-300/10 px-3 py-1 text-xs font-semibold text-sky-200">
+                          {demo.price}
+                        </div>
+                      )}
                       <p className="mt-3 text-sm leading-6 text-slate-300">
                         {demo.description}
                       </p>
@@ -112,7 +153,7 @@ export default function DemoShowcase() {
                       <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-sky-300">
                         Open Demo
                         <span className="transition-transform duration-300 group-hover:translate-x-1">
-                          →
+                          -&gt;
                         </span>
                       </div>
                     </div>
